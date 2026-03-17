@@ -1,13 +1,68 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رَحّال - نظام إدارة النقل</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <style>
+        .page { display: none; }
+        .active { display: block; }
+    </style>
+</head>
+<body class="bg-[#1a0b3d] font-sans text-white">
+
+    <div id="homePage" class="page active min-h-screen flex flex-col items-center justify-center p-6 text-center">
+        <div class="bg-yellow-500 p-4 rounded-2xl mb-4 shadow-lg">
+            <span class="text-4xl text-black">🚌</span>
+        </div>
+        <h1 class="text-4xl font-bold mb-2 text-yellow-500">رَحّال</h1>
+        <p class="text-gray-300 mb-10 text-lg">نظام إدارة خطوط النقل الذكي</p>
+        
+        <button onclick="showPage('driverPage')" class="w-full max-w-xs bg-yellow-500 text-black font-bold py-5 rounded-2xl mb-4 hover:scale-105 transition-all text-xl shadow-xl">
+            أنا سائق 🚕
+        </button>
+        
+        <button onclick="showPage('passengerPage')" class="w-full max-w-xs bg-[#6c48ff] text-white font-bold py-5 rounded-2xl hover:scale-105 transition-all text-xl shadow-2xl">
+            أنا راكب 👤
+        </button>
+        
+        <p class="mt-12 text-xs text-gray-500 italic opacity-60">بوابة الإدارة 🛡️</p>
+    </div>
+
+    <div id="driverPage" class="page min-h-screen bg-gray-100 p-6 text-black">
+        <button onclick="showPage('homePage')" class="text-blue-600 font-bold mb-6 block text-lg">← رجوع للرئيسية</button>
+        <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-yellow-500">
+            <h2 class="text-2xl font-bold mb-2">بوابة السائق 🚕</h2>
+            <p class="text-gray-500 mb-6">سجل رحلتك الجديدة لتظهر للركاب</p>
+            <div class="space-y-4">
+                <input type="text" placeholder="اسمك الكامل" class="w-full p-4 bg-gray-50 border rounded-2xl outline-none">
+                <input type="text" placeholder="منطقة الانطلاق" class="w-full p-4 bg-gray-50 border rounded-2xl outline-none">
+                <input type="text" placeholder="الوجهة النهائية" class="w-full p-4 bg-gray-50 border rounded-2xl outline-none">
+                <button class="w-full bg-black text-white py-5 rounded-2xl font-bold text-lg shadow-lg">نشر الخط الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="passengerPage" class="page min-h-screen bg-gray-100 p-6 text-black">
+        <button onclick="showPage('homePage')" class="text-blue-600 font-bold mb-6 block text-lg">← رجوع للرئيسية</button>
+        <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-[#6c48ff]">
+            <h2 class="text-2xl font-bold mb-6 text-center">ابحث عن رحلة 👤</h2>
+            <div class="space-y-4 mb-8">
+                <input type="text" placeholder="وين أنت؟ (مثلاً: الحرية)" class="w-full p-4 bg-gray-50 border rounded-2xl outline-none focus:border-[#6c48ff]">
+                <input type="text" placeholder="وين تروح؟ (مثلاً: حي أور)" class="w-full p-4 bg-gray-50 border rounded-2xl outline-none focus:border-[#6c48ff]">
+                <button class="w-full bg-[#6c48ff] text-white py-5 rounded-2xl font-bold text-lg shadow-xl">ابحث عن أرخص سعر</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // إخفاء كل الصفحات
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // إظهار الصفحة المطلوبة
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
 </html>
